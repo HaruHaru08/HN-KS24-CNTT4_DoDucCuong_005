@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div style="text-align:center;background-color: green;width: 100%;height: 100px;border: 1px solid black;margin-bottom: 20px">Header</div>
+<div style="display: flex;justify-content: space-between;align-items: center;margin-bottom: 40px">
+    <div style="margin-left: 40px">
+        <input type="search" placeholder="Search..." style="margin-right: 20px">
+        <button type="button" name="" id="" class="btn btn-primary">Search</button>
+    </div>
+    <a class="btn btn-primary" th:href="@{/add}" style="margin-right: 40px">ADD</a>
+</div>
+
+<table class="table table-striped table-inverse table-responsive">
+    <thead class="thead-inverse">
+    <tr>
+        <th>STT</th>
+        <th>Tên địa danh</th>
+        <th>Tỉnh/Thành phố</th>
+        <th>Mô tả</th>
+        <th>Đánh giá</th>
+        <th>Hình ảnh</th>
+        <th>Hành động</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="a:${attractions}">
+        <td scope="row" th:text="${a.id}"></td>
+        <td th:text="${a.name}"></td>
+        <td th:text="${a.location}"></td>
+        <td th:text="${a.description}"></td>
+        <td th:text="${a.rating}"></td>
+        <td>#</td>
+        <td>
+            <a>Sửa</a>
+            <a th:href="@{/delete/{id}(id=${a.id})}" onclick="return confirm('Bạn có chắc muốn xóa địa danh này?')">Xóa</a>
+        </td>
+    </tr>
+    <tr th:if="${#lists.isEmpty(attractions)}">
+        <td colspan="7">Chưa có địa danh nào trong danh sách quảng bá</td>
+    </tr>
+    </tbody>
+</table>
+<footer style="text-align:center;background-color: yellow;width: 100%;height: 100px;border: 1px solid black;margin-top: 80px">Footer</footer>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+</html>
